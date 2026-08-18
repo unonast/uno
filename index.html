@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="main.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест форма</title>
+    <h1>Форма на сайте</h1>
+  
+</head>
+<body>
+    <form action="send.php" method="POST">
+  <div>
+    <label for="name">Ваше имя:</label>
+    <input type="text" id="name" name="name" required placeholder="Иван">
+  </div>
+  
+  <div>
+    <label for="phone">Телефон:</label>
+    <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 000-00-00">
+  </div>
+  
+  <div>
+    <label for="email">Электронная почта:</label>
+    <input type="email" id="email" name="email" placeholder="example@mail.ru">
+  </div>
+  
+  <div>
+    <label for="price">Цена:</label>
+    <textarea id="price" name="price" rows="1" placeholder="Ваша цена..."></textarea>
+  </div>
+   <!-- Скрытое поле для записи секунд -->
+    <input type="hidden" name="time_on_site" id="time_on_site" value="0">
+  
+  <button type="submit">Отправить</button>
+</form>
+
+<script>
+    // Засекаем время загрузки страницы
+    const startTime = Date.now();
+
+    // Перед отправкой формы вычисляем, сколько секунд прошло
+    document.querySelector('form').addEventListener('submit', function() {
+        const endTime = Date.now();
+        const secondsSpent = Math.floor((endTime - startTime) / 1000);
+        
+        // Записываем секунды в скрытый инпут
+        document.getElementById('time_on_site').value = secondsSpent;
+    });
+</script>
+
+</body>
+</html>
